@@ -15,6 +15,8 @@ Given the industrial focus of my PhD, I implement part of my research as on-dema
 
 News
 ------
+- **01/08/2026** Our paper: [**Semantic Space Search Trajectory Networks**](https://arxiv.org/abs/2607.25122) was accepted at the [EA 2026: 17th Biennal International Conference on Artificial Evolution](https://ea2026.inria.fr/index.html) conference.
+
 - **01/06/2026:** I'll be attending to the CAP 2026 in Montpellier,fr between the 6th and the 8th Jully. I'll be doing poster presentations for our papers: [**Sim-to-Real Transfer with Asymmetric Temporal Supervision Using Alignment on an INR based architecture**](/files/cap_2026_asymmetric_tl.pdf) and [**Modélisation Substitutive de la Croissance des Cultures par Apprentissage Profond Guidé par la Physique**](/files/cap_2026_pg_s2s.pdf).
 
 - **08/06/25:** I'll be attending to the CAP 2025 in Dijon,fr between the 30th june and the 2th july. The 30th june at 16h00, I'll be presenting our paper: **Prévision de sécheresse en utilisant une architecture neuronale hybride intégrant des séries temporelles et des données statiques**.
