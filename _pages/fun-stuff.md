@@ -10,10 +10,17 @@ A few insignificant thoughts and stolen ideas for the idle website surfer
 Quotes
 ------
 
+
+> Thank you \*\*\*\* for your :heart_eyes: BEAUTIFUL :heart_eyes: talk!
+**An anonymous SC**
+
+> But we have something they don’t: pretty pictures… and being shameless.
+**A.T**
+
 > In the end, the real representation learned was the friends we fine-tuned along the way.
 **J.A**
 
-> Pertinence Barbillon a été primesque comme tous les jeudis
+> Pertinence Barbillon a été primesque comme tous les jeudis.
 **I.S. à propos de P.B.** (taken from [Louis's Home Page](https://polarolouis.fr/))
 
 > À ce sujet, je sais comment démontrer les deux : que ça marche et que ça ne marche pas.
