@@ -56,7 +56,7 @@ purpose. For example, here is an algorithm for singing that annoying song “99 
 > ```
 > **Jeff Erickson**, Algorithms (2019)
 
-> What's the different between Machine learning and AI?
+> What's the difference between Machine learning and AI?
 >>If it's written in Python, then it's probably Machine Learning.
 >>
 >>If it's written in PowerPoint, then it's probably AI.
