@@ -16,7 +16,9 @@ Given the industrial focus of my PhD, I implement part of my research as on-dema
 News
 ------
 
-- **31/08/26** I'm happy to announce that I will be serving as a **Teaching Assistant** for the **Computer Science: Programming and Databases** course at [AgroParisTech](https://www.agroparistech.fr/en) during the 2026–2027 academic year.
+- **10/09/26** 🎓 Kudos to [Ismaïl](https://www.linkedin.com/in/ismail-elyousfi/) on the successful completion of his Master’s thesis (Mémoire de fin d'études)! It was a pleasure to co-supervise his research journey on **multi-scale modeling and what-if scenario generation for dairy production forecasting** alongside [Cristina Manfredotti](https://mia-ps.inrae.fr/cristina-manfredotti) and to see the project come to fruition.
+
+- **31/08/26** I'm happy to announce that I will be serving as a **Teaching Assistant** for the **Computer Science: Programming and Databases** course at [AgroParisTech](https://www.agroparistech.fr/en) during the 2026-2027 academic year.
 
 - **31/08/26** The [**11th Junior Conference on Data Sciences and Engineering (JDSE 2026)**](https://jdse2026.github.io/), for which I am a member of the junior committee, will take place at **Palaiseau** from **24 to 25 september**.
 
