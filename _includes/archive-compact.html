@@ -1,0 +1,137 @@
+{% comment %}
+  Compact list entry, shared by publications, teaching, talks and blog posts.
+  Styles live in _sass/_compact.scss
+{% endcomment %}
+
+{% include base_path %}
+
+{% assign coll = post.collection | default: 'posts' %}
+
+{% comment %}
+  Thumbnail: `thumbnail:` in the front matter, else header.teaser.
+  Blog posts always show the thumbnail area (with a placeholder icon when no image
+  is set yet); the other collections show one only if an image is set explicitly.
+{% endcomment %}
+{% if post.thumbnail %}
+  {% capture thumb %}{{ post.thumbnail }}{% endcapture %}
+{% elsif post.header.teaser %}
+  {% capture thumb %}{{ post.header.teaser }}{% endcapture %}
+{% elsif coll == 'posts' %}
+  {% assign thumb = site.teaser %}
+{% else %}
+  {% assign thumb = nil %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+{% comment %} publications and talks point outward (paper / slides), the rest to their own page {% endcomment %}
+{% assign title_link = nil %}
+{% if coll == 'publications' %}
+  {% if post.paperurl %}
+    {% assign title_link = post.paperurl %}
+  {% elsif post.paperpdf %}
+    {% capture title_link %}{{ base_path }}{{ post.paperpdf }}{% endcapture %}
+  {% endif %}
+{% elsif coll == 'talks' %}
+  {% if post.slidespdf %}
+    {% capture title_link %}{{ base_path }}{{ post.slidespdf }}{% endcapture %}
+  {% endif %}
+{% else %}
+  {% capture title_link %}{{ base_path }}{{ post.url }}{% endcapture %}
+{% endif %}
+
+{% comment %} teaching and blog posts show their full teaser (the first paragraph) {% endcomment %}
+{% if coll == 'talks' %}
+  {% assign excerpt_text = post.description | strip_html | strip | truncate: 180 %}
+{% else %}
+  {% assign excerpt_text = post.excerpt | strip_html | strip %}
+{% endif %}
+
+<article class="compact" itemscope itemtype="http://schema.org/CreativeWork">
+
+  {% if thumb or coll == 'posts' %}
+    <div class="compact__thumb">
+      {% if thumb %}
+        <img src=
+          {% if thumb contains "://" %}
+            "{{ thumb }}"
+          {% else %}
+            "{{ thumb | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          alt="">
+      {% else %}
+        <span class="compact__thumb--empty" aria-hidden="true">
+          <i class="fa-solid fa-pen-nib"></i>
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="compact__body">
+
+    <h3 class="compact__title" itemprop="headline">
+      {% if title_link %}
+        <a href="{{ title_link }}"{% if coll == 'publications' or coll == 'talks' %} target="_blank"{% endif %}>{{ title }}</a>
+      {% else %}
+        {{ title }}
+      {% endif %}
+    </h3>
+
+    {% if post.authors %}
+      <p class="compact__sub">{{ post.authors }}</p>
+    {% endif %}
+
+    <p class="compact__meta">
+      {% if post.type and coll != 'publications' %}<span>{{ post.type }}</span>{% endif %}
+      {% if coll == 'publications' and post.category %}
+        {% assign category_label = site.publication_category[post.category].label | default: site.publication_category[post.category].title %}
+        {% if category_label %}<span>{{ category_label }}</span>{% endif %}
+      {% endif %}
+      {% if post.venue %}<span class="compact__venue">{{ post.venue }}</span>{% endif %}
+      {% if post.location %}<span>{{ post.location }}</span>{% endif %}
+
+      {% if post.date and include.hide_date != true %}
+        <span>
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {% if coll == 'publications' %}{{ post.date | date: "%Y" }}{% elsif coll == 'posts' %}{{ post.date | date: "%B %-d, %Y" }}{% else %}{{ post.date | date: "%B %Y" }}{% endif %}
+          </time>
+        </span>
+      {% endif %}
+
+      {% if post.tags.size > 0 %}<span>{{ post.tags | join: ", " }}</span>{% endif %}
+
+      {% if post.paperurl %}
+        <a class="compact__link" href="{{ post.paperurl }}" target="_blank" title="Publisher page">
+          <i class="fa-solid fa-globe"></i><span class="sr-only">Publisher page</span>
+        </a>
+      {% endif %}
+
+      {% if post.paperpdf %}
+        <a class="compact__link" href="{{ base_path }}{{ post.paperpdf }}" target="_blank" title="PDF">
+          <i class="fa-solid fa-file-pdf"></i><span class="sr-only">PDF</span>
+        </a>
+      {% endif %}
+
+      {% if post.papercode %}
+        <a class="compact__link" href="{{ post.papercode }}" target="_blank" title="Code">
+          <i class="fa-brands fa-github"></i><span class="sr-only">Code</span>
+        </a>
+      {% endif %}
+
+      {% if post.slidespdf %}
+        <a class="compact__link" href="{{ base_path }}{{ post.slidespdf }}" target="_blank" title="Slides">
+          <i class="fa-solid fa-person-chalkboard"></i><span class="sr-only">Slides</span>
+        </a>
+      {% endif %}
+    </p>
+
+    {% if excerpt_text != '' %}
+      <p class="compact__excerpt" itemprop="description">{{ excerpt_text }}</p>
+    {% endif %}
+
+  </div>
+</article>

@@ -11,26 +11,15 @@ author_profile: true
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-paper.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-paper.html %}
-  {% endfor %}
-{% endif %}
-
-
-
+<!-- Papers grouped by year, most recent first.
+     The kind of publication (conference, journal, ...) is shown on each entry. -->
+{% assign papers = site.publications | sort: 'date' | reverse %}
+{% assign written_year = 'None' %}
+{% for post in papers %}
+  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+  {% if year != written_year %}
+    <h2 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
+    {% assign written_year = year %}
+  {% endif %}
+  {% include archive-compact.html hide_date=true %}
+{% endfor %}

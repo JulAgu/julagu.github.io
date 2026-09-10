@@ -1,0 +1,133 @@
+/* ==========================================================================
+   CLICKABLE AVATAR
+   The profile picture flips to a random animal on click.
+   Markup: _includes/author-profile.html — behaviour: assets/js/animal-avatar.js
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   >>> EDIT HERE <<<
+   -------------------------------------------------------------------------- */
+$avatar-flip-duration : 320ms; // keep in sync with `flipMs` in animal-avatar.js
+$avatar-reset-size    : 28px;  // diameter of the "back to me" badge
+$avatar-size          : 175px; // square size of the picture on wide screens
+/* -------------------------------------------------------------------------- */
+
+.avatar-fun {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.avatar-fun__toggle {
+  /* strip the theme's button styling: this is just a clickable picture */
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  line-height: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &:hover,
+  &:focus {
+    background: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  /* animals come in every shape: crop them to a square so the frame never
+     turns into an ellipse */
+  img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    transition: filter 0.2s ease-in-out;
+
+    @include breakpoint($large) {
+      width: $avatar-size;
+      height: $avatar-size;
+    }
+  }
+
+  &:hover img {
+    filter: saturate(1.1) brightness(1.03);
+  }
+
+  /* flipping over: the picture is swapped when the card is edge-on */
+  &.is-flipping {
+    animation: avatar-flip $avatar-flip-duration ease-in-out;
+  }
+
+  /* waiting for the animal to download */
+  &.is-loading {
+    animation: avatar-pulse 0.9s ease-in-out infinite;
+    cursor: progress;
+  }
+}
+
+@keyframes avatar-flip {
+  0% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+
+  50% {
+    transform: perspective(600px) rotateY(90deg);
+  }
+
+  100% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+}
+
+@keyframes avatar-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* small badge that brings the portrait back; only shown while an animal is up */
+.avatar-fun__reset {
+  display: none;
+  padding: 0;
+  width: $avatar-reset-size;
+  height: $avatar-reset-size;
+  border: 0;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: $avatar-reset-size;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(#000, 0.3);
+
+  &:hover,
+  &:focus {
+    background-color: mix(#000, $primary-color, 15%);
+    color: #fff;
+  }
+
+  /* the avatar is only full size on wide screens, so the badge lives there */
+  @include breakpoint($large) {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    display: block;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-fun__toggle.is-flipping,
+  .avatar-fun__toggle.is-loading {
+    animation: none;
+  }
+}

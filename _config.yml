@@ -76,16 +76,20 @@ author:
   youtube          : # Username
   zhihu            : # Username
 
-# Publication Category - The following the list of publication categories and their headings
+# Publication Category - `title` is the group heading, `label` the tag shown on a single entry
 publication_category:
   preprints:
     title: 'Preprints'
+    label: 'Preprint'
   books:
     title: 'Books'
+    label: 'Book'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Journal Articles'
+    label: 'Journal article'
   conferences:
     title: 'Conference Papers'
+    label: 'Conference paper'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"

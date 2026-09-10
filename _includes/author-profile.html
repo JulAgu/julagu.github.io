@@ -7,11 +7,20 @@
 <div itemscope itemtype="http://schema.org/Person">
 
   <div class="author__avatar">
-    {% if author.avatar contains "://" %}
-    	<img src="{{ author.avatar }}" alt="{{ author.name }}">
-    {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}">
-    {% endif %}
+    <span class="avatar-fun">
+      <button type="button" class="avatar-fun__toggle" data-animal-avatar
+              title="Click me !">
+        {% if author.avatar contains "://" %}
+          <img src="{{ author.avatar }}" alt="{{ author.name }}">
+        {% else %}
+          <img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}">
+        {% endif %}
+      </button>
+      <button type="button" class="avatar-fun__reset" data-animal-reset hidden
+              title="Back to me" aria-label="Show myself again">
+        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+      </button>
+    </span>
   </div>
 
   <div class="author__content">

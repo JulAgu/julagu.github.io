@@ -1,0 +1,47 @@
+/* ==========================================================================
+   NEWS
+   Scrollable news feed used on the about page
+   ========================================================================== */
+
+.news-scroll {
+  max-height: 22em;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.5em 1em 0.5em 0;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: $background-color;
+
+  ul {
+    margin: 0;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  /* slim, discreet scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: $light-gray transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $light-gray;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $gray;
+    }
+  }
+}

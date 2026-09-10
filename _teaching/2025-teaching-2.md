@@ -6,7 +6,7 @@ author_profile: false
 permalink: /teaching/2026_agro
 venue: "HappyR-StateOftheR"
 date: 2026-05-29
-location: "CAmpus Agro Paris-Saclay"
+location: "Campus Agro Paris-Saclay"
 ---
 
 Ensuring the reproducibility and traceability of experiments is a key challenge in conducting machine learning research projects. Tools derived from software engineering and industrial machine learning provide an effective solution to these needs thanks to their low integration costs and high utility.
